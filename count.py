@@ -1,30 +1,10 @@
-# 문자열을 입력받는다.
-# 변수 count=0을 지정
-# 각 알파벳에 대한 for 문을 알파벳의 길이만큼 돌림 // 이유: sentence[i] 와 알파벳을 비교하기 위해
-# 알파벳이 바뀌면 원래 다루고 있던 알파벳과 count를 출력하고, count=1로 초기화한다
-sentence = str(input("문자열을 입력해 주세요:")) #aabbaa 012345
-
-count = 0
-ch = sentence[0] #ch = a
-for i in range(len(sentence)):  #sentence[i]와 알파벳을 비교하기위해
-    if sentence[i] == ch:  # 현재 중점을 두는 문자와 일치하는 지를 보기 위해
-        if i == len(sentence)-1:
-            count += 1 
-            print(ch,count)
-        else: count += 1 
-        
-    elif sentence[i] != ch: #현재 중점을 두는 문자와 일치하지 않으면 count 값을 1로 초기화하고 중점을 두는 문자도 초기화하기 위해
-        if i == len(sentence)-1:
-            print(ch, count)
-            count = 1
-            ch = sentence[i]
-            print(ch, count)
-        else: 
-            print(ch, count)
-            count = 1
-            ch = sentence[i]
-
-
-
-
-    
+sentence = str(input("문자열을 입력해 주세요:")) + ' ' # 문자열을 입력받음 -> 마지막을 공백으로 처리하면 for 문에서 마지막에 값을 비교할 때 다르게 판별 가능
+focus_ch = sentence[0] # 처음에 집중하는 문자 = 배열의 첫째항
+count = 1 # 처음에 카운트 = 1로 설정
+for character in sentence[1:]: # 첫째항을 제외한 리스트에 있는 모든 값들에 대해
+    if focus_ch == character: # 현재 집중하고 있는 문자가 리스트에 있는 문자이면
+        count += 1 # 카운트를 하나 증가시킴
+    else:  # 집중하고 있는 문자가 현재 리스트에 있는 문자와 다르면
+        print(focus_ch+str(count),end="" ) # 현재 집중하는 문자, 그동안의 카운트 수 출력
+        count = 1 # 카운트 = 1로 재설정
+        focus_ch = character # 집중하고 있는 문자 = 현재 보고 있는 문자로 재설정
